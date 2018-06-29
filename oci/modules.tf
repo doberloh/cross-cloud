@@ -4,10 +4,22 @@ module "compartment" {
   label_prefix = "${var.label_prefix}"
 }
 
-module "network" {
-
+module "ssh" {
+  source = "./modules/ssh"
+  ssh_private_key = "${var.ssh_private_key}"
+  ssh_public_key = "${var.ssh_public_key}"
 }
 
+module "network" {
+  source = "./modules/network"
+  network_cidrs = "${var.network_cidrs}"
+  compartment_id = "${module.compartment.compartment_id}"
+  label_prefix = "${var.label_prefix}"
+  tenancy_id = "${var.oci_tenancy_ocid}"
+  nat_instance_oracle_linux_image_name = "${var.nat_instance_oracle_linux_image_name}"
+  nat_instance_shape = "${var.nat_instance_shape}"
+  ssh_public_key = "${module.ssh.ssh_public_key}"
+}
 //module "master" {
 //  source = "./modules/master"
 //

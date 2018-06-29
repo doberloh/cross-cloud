@@ -6,9 +6,15 @@ variable "oci_private_key_path" {}
 variable "oci_region" { default = "us-phoenix-1" }
 
 # general
-variable "label_prefix" { default = "cross-cloud"}
+variable "label_prefix" { default = "crosscloud"}
+
+# ssh
+variable "ssh_private_key" { default = "" }
+variable "ssh_public_key" { default = "" }
 
 # network vars
+variable "nat_instance_oracle_linux_image_name" { default = "Oracle-Linux-7.5-2018.04.20-1" }
+variable "nat_instance_shape" { default = "VM.Standard1.1" }
 variable "network_cidrs" {
   type = "map"
 

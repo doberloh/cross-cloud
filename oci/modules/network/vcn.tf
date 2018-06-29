@@ -2,7 +2,7 @@ resource "oci_core_virtual_network" "cross-cloud-vcn" {
   cidr_block        = "${lookup(var.network_cidrs, "VCN-CIDR")}"
   compartment_id    = "${var.compartment_id}"
   display_name      = "${var.label_prefix}-vcn"
-  dns_label         = "${var.dns_label}"
+  dns_label         = "${var.label_prefix}"
 }
 
 resource "oci_core_internet_gateway" "cross-cloud-ig" {
