@@ -47,6 +47,12 @@ RUN mkdir -p $GOPATH/src/github.com/terraform-providers \
 && cd $GOPATH/src/github.com/terraform-providers/terraform-provider-ibm \
 && make build
 
+# OCI Provider
+WORKDIR /cncf
+RUN wget -O oci_linux_amd64.tar.gz https://github.com/oracle/terraform-provider-oci/releases/download/v2.1.12/linux_amd64.tar.gz && \
+    tar -xvzf oci_linux_amd64.tar.gz && \
+    mv oci_linu
+
 # Install Gzip+base64 & ETCD Provider
 RUN go get -u github.com/jakexks/terraform-provider-gzip && \
     go get -u github.com/paperg/terraform-provider-etcdiscovery && \
@@ -67,6 +73,7 @@ COPY ibm/ /cncf/ibm/
 COPY gce/ /cncf/gce/
 COPY gke/ /cncf/gke/
 COPY openstack/ /cncf/openstack/
+COPY oci/ /cncf/oci/
 COPY packet/ /cncf/packet/
 COPY vsphere/ /cncf/vsphere/
 
