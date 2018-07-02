@@ -3,8 +3,12 @@ resource "oci_core_instance" "NATInstanceAD1" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
   compartment_id      = "${var.compartment_id}"
   display_name        = "${var.label_prefix}-nat-ad1"
-  image               = "${lookup(data.oci_core_images.ImageOCID.images[0], "id")}"
   shape               = "${var.nat_instance_shape}"
+
+  source_details      {
+    source_type = "image"
+    source_id   = "${lookup(data.oci_core_images.ImageOCID.images[0], "id")}"
+  }
 
   create_vnic_details {
     subnet_id = "${element(concat(oci_core_subnet.NATSubnetAD1.*.id,list("")),0)}"
@@ -30,8 +34,12 @@ resource "oci_core_instance" "NATInstanceAD2" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   compartment_id      = "${var.compartment_id}"
   display_name        = "${var.label_prefix}-nat-ad2"
-  image               = "${lookup(data.oci_core_images.ImageOCID.images[0], "id")}"
   shape               = "${var.nat_instance_shape}"
+
+  source_details      {
+    source_type = "image"
+    source_id   = "${lookup(data.oci_core_images.ImageOCID.images[0], "id")}"
+  }
 
   create_vnic_details {
     subnet_id = "${element(concat(oci_core_subnet.NATSubnetAD2.*.id,list("")),0)}"
@@ -57,8 +65,12 @@ resource "oci_core_instance" "NATInstanceAD3" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[2],"name")}"
   compartment_id      = "${var.compartment_id}"
   display_name        = "${var.label_prefix}-nat-ad3"
-  image               = "${lookup(data.oci_core_images.ImageOCID.images[0], "id")}"
   shape               = "${var.nat_instance_shape}"
+
+  source_details      {
+    source_type = "image"
+    source_id   = "${lookup(data.oci_core_images.ImageOCID.images[0], "id")}"
+  }
 
   create_vnic_details {
     subnet_id = "${element(concat(oci_core_subnet.NATSubnetAD3.*.id,list("")),0)}"

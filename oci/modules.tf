@@ -19,6 +19,10 @@ module "network" {
   nat_instance_oracle_linux_image_name = "${var.nat_instance_oracle_linux_image_name}"
   nat_instance_shape = "${var.nat_instance_shape}"
   ssh_public_key = "${module.ssh.ssh_public_key}"
+  external_icmp_ingress = "${var.external_icmp_ingress}"
+  internal_icmp_ingress = "{${var.internal_icmp_ingress}"
+  public_subnet_ssh_ingress = "${var.public_subnet_ssh_ingress}"
+  etcd_cluster_ingress = "${var.etcd_cluster_ingress}"
 }
 //module "master" {
 //  source = "./modules/master"

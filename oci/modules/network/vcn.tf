@@ -5,13 +5,13 @@ resource "oci_core_virtual_network" "cross-cloud-vcn" {
   dns_label         = "${var.label_prefix}"
 }
 
-resource "oci_core_internet_gateway" "cross-cloud-ig" {
+resource "oci_core_internet_gateway" "ig" {
   compartment_id = "${var.compartment_id}"
   display_name   = "${var.label_prefix}-ig"
   vcn_id         = "${oci_core_virtual_network.cross-cloud-vcn.id}"
 }
 
-resource "oci_core_route_table" "cross-cloud-public-route-table" {
+resource "oci_core_route_table" "public-route-table" {
   compartment_id = "${var.compartment_id}"
   vcn_id         = "${oci_core_virtual_network.cross-cloud-vcn.id}"
   display_name   = "${var.label_prefix}-public-route-table"
@@ -20,7 +20,7 @@ resource "oci_core_route_table" "cross-cloud-public-route-table" {
     cidr_block = "0.0.0.0/0"
 
     # Internet Gateway route target for instances on public subnets
-    network_entity_id = "${oci_core_internet_gateway.cross-cloud-ig.id}"
+    network_entity_id = "${oci_core_internet_gateway.ig.id}"
   }
 }
 
