@@ -35,3 +35,5 @@ variable "network_cidrs" {
     BastionSubnetAD1      = "10.0.19.0/24"
   }
 }
+
+#master vars
